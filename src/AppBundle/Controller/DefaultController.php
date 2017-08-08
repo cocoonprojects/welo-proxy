@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use GuzzleHttp\Psr7\Request;
+use Zend\Diactoros\Response;
 
 class DefaultController extends Controller
 {
@@ -25,7 +27,10 @@ class DefaultController extends Controller
 
         $headers = [];
         $headers['Content-Type'] = 'application/json';
-        $headers[$authHeaderName] = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXUyJ9.eyJ1aWQiOiI2MDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiLCJpYXQiOiIxNDM4NzgyOTU1In0.rqGFFeOf5VdxO_qpz_fkwFJtgJH4Q5Kg6WUFGA_L1tMB-yyZj7bH3CppxxxvpekQzJ7y6aH6I7skxDh1K1Cayn3OpyaXHyG9V_tlgo08TKR7EK0TsBA0vWWiT7Oito97ircrw_4N4ZZFmF6srpNHda2uw775-7SpQ8fdI0_0LOn1IwF1MKvJIuZ9J7bR7PZsdyqLQSpNm8P5gJiA0c6i_uubtVEljVvr1H1mSoq6hViS9A2M-v4THlbH_Wki2pYp00-ggUu6dm25NeX300Q6x2RBHVY_bXpw7voRbXI1VAg_LxXDjv61l4lar6dOhK3qbsXm9P2JTEqyG7bYSAqtLA';
+
+        if ($request->hasHeader($authHeaderName)) {
+            $headers[$authHeaderName] = $request->getHeader($authHeaderName);
+        }
 
         $proxyRequest = new Request(
             $request->getMethod(),
@@ -34,7 +39,32 @@ class DefaultController extends Controller
             $request->getBody()
         );
 
-        return $client->send($proxyRequest);
+        try {
+
+            $proxyResponse = $client->send($proxyRequest);
+
+        } catch (BadResponseException $e) {
+
+            if ($e->hasResponse()) {
+                return new Response(
+                    $e->getResponse()->getBody(),
+                    $e->getResponse()->getStatusCode(),
+                    $e->getResponse()->getHeaders()
+                );
+            }
+
+            return new Response($e->getMessage(), 500);
+        } catch (\Exception $e) {
+            return new Response($e->getMessage(), 500);
+        }
+
+        $response = new Response(
+            $proxyResponse->getBody(),
+            $proxyResponse->getStatusCode(),
+            $proxyResponse->getHeaders()
+        );
+
+        return $response;
     }
 
 
