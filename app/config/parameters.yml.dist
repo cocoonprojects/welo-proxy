@@ -17,8 +17,3 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
-
-	welo_legacy_base_url: http://api.welo.dev
-
-    #should be 'ORA-JWT' for dev environment 'GOOGLE-JWT' for stage and prod environments
-    welo_legacy_auth_header_name: ORA-JWT
