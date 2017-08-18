@@ -17,7 +17,7 @@ $targets = array(
         'ssh_params' => ['user' => 'cocoon'],
         'deploy' => array(
             'local_base_dir' => __DIR__,
-            'remote_base_dir' => '/var/www/vhosts/welo-proxy-prod/',
+            'remote_base_dir' => '/var/www/vhosts/welo-api-prod/',
             'rsync_exclude_file' => 'deploy_exclude'
         ),
     ),
