@@ -2,3 +2,13 @@ home:
     path: /
     defaults: { _controller: AppBundle:Default:index }
     methods: [ GET ]
+
+event:
+    path: /event
+    defaults: { _controller: AppBundle:Default:event }
+    methods: [ GET ]
+
+eventLoad:
+    path: /eventLoad
+    defaults: { _controller: AppBundle:Default:eventLoad }
+    methods: [ GET ]

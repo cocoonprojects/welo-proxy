@@ -67,3 +67,8 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+broadway:
+    event_store: "AppBundle\\LegacyPhroophEventStore"
+    command_handling:
+        logger: 'logger'
