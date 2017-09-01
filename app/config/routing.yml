@@ -12,3 +12,8 @@ eventLoad:
     path: /eventLoad
     defaults: { _controller: AppBundle:Default:eventLoad }
     methods: [ GET ]
+
+eventproxy:
+    path: /eventproxy
+    defaults: { _controller: AppBundle:Default:eventProxy }
+    methods: [ POST ]

@@ -21,9 +21,12 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "behat/behat": "^3.3",
+        "behat/symfony2-extension": "^2.1",
         "broadway/broadway": "^1.1",
         "broadway/broadway-bundle": "dev-master#62de4d03801264130693fc63a62559e71a9a1809",
         "broadway/event-store-dbal": "^0.1.2",
+        "coduo/php-matcher": "^2.2",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "guzzlehttp/guzzle": "^6.3",
@@ -40,6 +43,8 @@
         "zendframework/zend-diactoros": "^1.4"
     },
     "require-dev": {
+        "behat/mink-extension": "^2.2",
+        "phpunit/phpunit": "^5.7",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },

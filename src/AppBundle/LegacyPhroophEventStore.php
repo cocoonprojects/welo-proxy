@@ -85,7 +85,7 @@ final class LegacyPhroophEventStore implements EventStore
           'eventId' => $row['eventId'],
           'eventName' => $row['eventName'],
           'aggregateId' => $row['aggregate_id'],
-          'aggreagateType' => $row['aggregate_type']
+          'aggregateType' => $row['aggregate_type']
         ];
 
         return new DomainMessage(

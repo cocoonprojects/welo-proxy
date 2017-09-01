@@ -1,0 +1,8 @@
+default:
+    extensions:
+        Behat\Symfony2Extension: ~
+    suites:
+        api_features:
+            paths:    [ %paths.base%/features/api ]
+            contexts:
+                - BaseContext
