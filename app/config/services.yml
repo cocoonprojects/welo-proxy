@@ -42,3 +42,10 @@ services:
         arguments:
           - '@doctrine.dbal.default_connection'
           - 'event_stream'
+
+    app.organization.read_model.repository:
+        class: Welo\Organization\ReadModel\OrganizationRepository
+        factory: ["@doctrine", "getRepository"]
+        arguments:
+          - 'Welo:Organization'
+        public: true

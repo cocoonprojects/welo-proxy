@@ -1,0 +1,21 @@
+Welo\Organization\ReadModel\Organization:
+  type: entity
+  repositoryClass: Welo\Organization\ReadModel\OrganizationRepository
+  table: organizations
+  id:
+    id:
+      type: string
+      length: 40
+      unique: true
+      generator:
+        strategy: NONE
+  fields:
+    name:
+      type: string
+    settings:
+      type: json_array
+      length: 11
+      nullable: true
+    createdAt:
+      type: datetime
+      column: createdAt
