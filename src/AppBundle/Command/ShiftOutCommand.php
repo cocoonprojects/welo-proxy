@@ -32,6 +32,8 @@ class ShiftOutCommand extends ContainerAwareCommand
 
             dump($org->getSettings());
 
+
+
          /*   $usersToBeWarned = $userRepo->findUserWithLowActivity(
                 $org->getId(),
                 $org->getSettings()->get('shiftout_min_credits'),

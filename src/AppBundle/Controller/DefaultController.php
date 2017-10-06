@@ -54,7 +54,7 @@ class DefaultController extends Controller
         $eventStream = new DomainEventStream([$message]);
 
         $this->get('broadway.event_handling.event_bus')
-            ->publish($eventStream);
+             ->publish($eventStream);
 
         return new JsonResponse($content);
     }
